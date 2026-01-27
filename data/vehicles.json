@@ -1,0 +1,37 @@
+[
+  {
+    "make": "VW",
+    "model": "Golf",
+    "year": 2019,
+    "engine": "1.6 TDI",
+    "fuel": "Dizel"
+  },
+  {
+    "make": "VW",
+    "model": "Golf",
+    "year": 2022,
+    "engine": "1.5 TSI",
+    "fuel": "Benzin"
+  },
+  {
+    "make": "BMW",
+    "model": "3 Series",
+    "year": 2018,
+    "engine": "320i",
+    "fuel": "Benzin"
+  },
+  {
+    "make": "Mercedes",
+    "model": "C-Class",
+    "year": 2017,
+    "engine": "C200",
+    "fuel": "Benzin"
+  },
+  {
+    "make": "Ford",
+    "model": "Focus",
+    "year": 2020,
+    "engine": "1.5 EcoBlue",
+    "fuel": "Dizel"
+  }
+]

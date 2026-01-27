@@ -1,0 +1,67 @@
+[
+  {
+    "sku": "SPD-GREEN-5W30-4L",
+    "name": "SPEEDOL Green Particul 5W-30 (4L)",
+    "brand": "SPEEDOL",
+    "category": "Motor Yağı",
+    "viscosity": "5W-30",
+    "specs": [
+      "Full Synthetic",
+      "VW 504.00/507.00",
+      "BMW LL-04",
+      "API SN/CF"
+    ],
+    "sizeL": 4,
+    "priceEUR": 39.9,
+    "stock": 24,
+    "image": "assets/speedol-5w30-4l.png",
+    "recommendedFor": [
+      "vw golf 2019 1.6 tdi dizel"
+    ]
+  },
+  {
+    "sku": "SPD-DX1-0W20-5L",
+    "name": "SPEEDOL Zeta DX1 Plus 0W-20 G3 (5L)",
+    "brand": "SPEEDOL",
+    "category": "Motor Yağı",
+    "viscosity": "0W-20",
+    "specs": [
+      "Dexos1™ Gen3",
+      "API SP",
+      "ILSAC GF-6A",
+      "For Gasoline Engines"
+    ],
+    "sizeL": 5,
+    "priceEUR": 44.9,
+    "stock": 17,
+    "image": "assets/speedol-0w20-5l.png",
+    "recommendedFor": [
+      "vw golf 2022 1.5 tsi benzin"
+    ]
+  },
+  {
+    "sku": "FLT-MANN-OILFILTER-01",
+    "name": "MANN-FILTER Yağ Filtresi (W 719/45)",
+    "brand": "MANN-FILTER",
+    "category": "Filtre",
+    "specs": [
+      "OEM kalitesi"
+    ],
+    "priceEUR": 12.9,
+    "stock": 40,
+    "image": ""
+  },
+  {
+    "sku": "CLT-G12EVO-1L",
+    "name": "G12evo Antifriz Konsantre 1L",
+    "brand": "OEM",
+    "category": "Antifriz",
+    "specs": [
+      "G12evo",
+      "Uzun ömür"
+    ],
+    "priceEUR": 9.9,
+    "stock": 25,
+    "image": ""
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "date": "2025-12-16",
+    "sessions": 891,
+    "add_to_cart": 81,
+    "checkouts": 48,
+    "purchases": 29,
+    "bounce": 387,
+    "avg_session_sec": 112,
+    "top_landing": "/blog/ai-agent"
+  },
+  {
+    "date": "2025-12-17",
+    "sessions": 806,
+    "add_to_cart": 88,
+    "checkouts": 42,
+    "purchases": 25,
+    "bounce": 377,
+    "avg_session_sec": 104,
+    "top_landing": "/"
+  },
+  {
+    "date": "2025-12-18",
+    "sessions": 883,
+    "add_to_cart": 99,
+    "checkouts": 46,
+    "purchases": 27,
+    "bounce": 422,
+    "avg_session_sec": 74,
+    "top_landing": "/demo-store"
+  },
+  {
+    "date": "2025-12-19",
+    "sessions": 903,
+    "add_to_cart": 95,
+    "checkouts": 49,
+    "purchases": 30,
+    "bounce": 375,
+    "avg_session_sec": 85,
+    "top_landing": "/blog/ai-agent"
+  },
+  {
+    "date": "2025-12-20",
+    "sessions": 1095,
+    "add_to_cart": 95,
+    "checkouts": 49,
+    "purchases": 30,
+    "bounce": 453,
+    "avg_session_sec": 65,
+    "top_landing": "/recommendations"
+  },
+  {
+    "date": "2025-12-21",
+    "sessions": 1103,
+    "add_to_cart": 93,
+    "checkouts": 57,
+    "purchases": 36,
+    "bounce": 465,
+    "avg_session_sec": 66,
+    "top_landing": "/recommendations"
+  },
+  {
+    "date": "2025-12-22",
+    "sessions": 901,
+    "add_to_cart": 106,
+    "checkouts": 48,
+    "purchases": 33,
+    "bounce": 350,
+    "avg_session_sec": 104,
+    "top_landing": "/product/speedol-5w30"
+  },
+  {
+    "date": "2025-12-23",
+    "sessions": 871,
+    "add_to_cart": 85,
+    "checkouts": 50,
+    "purchases": 28,
+    "bounce": 446,
+    "avg_session_sec": 104,
+    "top_landing": "/recommendations"
+  },
+  {
+    "date": "2025-12-24",
+    "sessions": 879,
+    "add_to_cart": 81,
+    "checkouts": 42,
+    "purchases": 23,
+    "bounce": 446,
+    "avg_session_sec": 90,
+    "top_landing": "/product/speedol-5w30"
+  },
+  {
+    "date": "2025-12-25",
+    "sessions": 881,
+    "add_to_cart": 80,
+    "checkouts": 38,
+    "purchases": 25,
+    "bounce": 425,
+    "avg_session_sec": 113,
+    "top_landing": "/recommendations"
+  },
+  {
+    "date": "2025-12-26",
+    "sessions": 811,
+    "add_to_cart": 95,
+    "checkouts": 49,
+    "purchases": 35,
+    "bounce": 413,
+    "avg_session_sec": 111,
+    "top_landing": "/product/speedol-5w30"
+  },
+  {
+    "date": "2025-12-27",
+    "sessions": 1088,
+    "add_to_cart": 101,
+    "checkouts": 47,
+    "purchases": 29,
+    "bounce": 533,
+    "avg_session_sec": 106,
+    "top_landing": "/demo-store"
+  },
+  {
+    "date": "2025-12-28",
+    "sessions": 1029,
+    "add_to_cart": 114,
+    "checkouts": 51,
+    "purchases": 33,
+    "bounce": 402,
+    "avg_session_sec": 77,
+    "top_landing": "/demo-store"
+  },
+  {
+    "date": "2025-12-29",
+    "sessions": 772,
+    "add_to_cart": 78,
+    "checkouts": 41,
+    "purchases": 24,
+    "bounce": 348,
+    "avg_session_sec": 100,
+    "top_landing": "/recommendations"
+  },
+  {
+    "date": "2025-12-30",
+    "sessions": 821,
+    "add_to_cart": 76,
+    "checkouts": 42,
+    "purchases": 28,
+    "bounce": 342,
+    "avg_session_sec": 94,
+    "top_landing": "/"
+  },
+  {
+    "date": "2025-12-31",
+    "sessions": 865,
+    "add_to_cart": 73,
+    "checkouts": 44,
+    "purchases": 31,
+    "bounce": 364,
+    "avg_session_sec": 79,
+    "top_landing": "/product/speedol-5w30"
+  },
+  {
+    "date": "2026-01-01",
+    "sessions": 836,
+    "add_to_cart": 97,
+    "checkouts": 59,
+    "purchases": 34,
+    "bounce": 430,
+    "avg_session_sec": 107,
+    "top_landing": "/"
+  },
+  {
+    "date": "2026-01-02",
+    "sessions": 846,
+    "add_to_cart": 101,
+    "checkouts": 45,
+    "purchases": 30,
+    "bounce": 330,
+    "avg_session_sec": 97,
+    "top_landing": "/recommendations"
+  },
+  {
+    "date": "2026-01-03",
+    "sessions": 1155,
+    "add_to_cart": 122,
+    "checkouts": 65,
+    "purchases": 43,
+    "bounce": 455,
+    "avg_session_sec": 65,
+    "top_landing": "/blog/ai-agent"
+  },
+  {
+    "date": "2026-01-04",
+    "sessions": 1097,
+    "add_to_cart": 89,
+    "checkouts": 49,
+    "purchases": 32,
+    "bounce": 468,
+    "avg_session_sec": 100,
+    "top_landing": "/demo-store"
+  },
+  {
+    "date": "2026-01-05",
+    "sessions": 784,
+    "add_to_cart": 92,
+    "checkouts": 55,
+    "purchases": 35,
+    "bounce": 403,
+    "avg_session_sec": 74,
+    "top_landing": "/recommendations"
+  },
+  {
+    "date": "2026-01-06",
+    "sessions": 825,
+    "add_to_cart": 66,
+    "checkouts": 33,
+    "purchases": 21,
+    "bounce": 346,
+    "avg_session_sec": 96,
+    "top_landing": "/product/speedol-5w30"
+  },
+  {
+    "date": "2026-01-07",
+    "sessions": 880,
+    "add_to_cart": 94,
+    "checkouts": 44,
+    "purchases": 30,
+    "bounce": 410,
+    "avg_session_sec": 98,
+    "top_landing": "/recommendations"
+  },
+  {
+    "date": "2026-01-08",
+    "sessions": 897,
+    "add_to_cart": 75,
+    "checkouts": 44,
+    "purchases": 24,
+    "bounce": 437,
+    "avg_session_sec": 100,
+    "top_landing": "/product/speedol-5w30"
+  },
+  {
+    "date": "2026-01-09",
+    "sessions": 837,
+    "add_to_cart": 72,
+    "checkouts": 41,
+    "purchases": 23,
+    "bounce": 326,
+    "avg_session_sec": 66,
+    "top_landing": "/recommendations"
+  },
+  {
+    "date": "2026-01-10",
+    "sessions": 1079,
+    "add_to_cart": 97,
+    "checkouts": 54,
+    "purchases": 29,
+    "bounce": 527,
+    "avg_session_sec": 112,
+    "top_landing": "/"
+  },
+  {
+    "date": "2026-01-11",
+    "sessions": 1154,
+    "add_to_cart": 107,
+    "checkouts": 65,
+    "purchases": 45,
+    "bounce": 523,
+    "avg_session_sec": 71,
+    "top_landing": "/"
+  },
+  {
+    "date": "2026-01-12",
+    "sessions": 888,
+    "add_to_cart": 75,
+    "checkouts": 41,
+    "purchases": 24,
+    "bounce": 362,
+    "avg_session_sec": 88,
+    "top_landing": "/product/speedol-5w30"
+  },
+  {
+    "date": "2026-01-13",
+    "sessions": 828,
+    "add_to_cart": 85,
+    "checkouts": 43,
+    "purchases": 25,
+    "bounce": 348,
+    "avg_session_sec": 75,
+    "top_landing": "/"
+  },
+  {
+    "date": "2026-01-14",
+    "sessions": 884,
+    "add_to_cart": 73,
+    "checkouts": 33,
+    "purchases": 18,
+    "bounce": 424,
+    "avg_session_sec": 82,
+    "top_landing": "/product/speedol-5w30"
+  }
+]

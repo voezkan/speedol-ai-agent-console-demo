@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E‑Ticaret AI Agent Console • SPEEDOL (Demo)</title>
+  <meta name="description" content="E‑ticaret için AI Agent Console: satış analizi, raporlama, sosyal medya ve öneri ajanları." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+    <div class="grid"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/speedol-logo.png" class="logo" alt="SPEEDOL" />
+      <div class="btxt">
+        <div class="bname">E‑Ticaret AI Agent Console</div>
+        <div class="bsub">Satış • Raporlama • Sosyal Medya • Öneri (Demo)</div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="seg" role="tablist" aria-label="Zaman aralığı">
+        <button class="segbtn active" data-range="today">Bugün</button>
+        <button class="segbtn" data-range="7d">7 gün</button>
+        <button class="segbtn" data-range="30d">30 gün</button>
+      </div>
+      <div class="pills">
+        <span class="pill" id="pillMode">Demo Mode</span>
+        <span class="pill" id="pillAI">AI: kontrol…</span>
+        <span class="pill ghost" id="pillData">Veri: simülasyon</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <aside class="sidebar">
+      <div class="navhead">Ajanlar</div>
+      <button class="navitem active" data-view="overview">🧠 AI Overview</button>
+      <button class="navitem" data-view="sales">📊 Sales Analyst Agent</button>
+      <button class="navitem" data-view="reporting">📈 Reporting Agent</button>
+      <button class="navitem" data-view="social">📣 Social Media Agent</button>
+      <button class="navitem" data-view="reco">🤖 Recommendation Agent</button>
+      <button class="navitem" data-view="sources">🔗 Data Sources</button>
+
+      <div class="navsep"></div>
+      <div class="navhead">Demo</div>
+      <button class="navitem" data-view="store">🛒 Demo Store (Motor Yağı)</button>
+
+      <div class="foot">
+        <div class="tiny">Not: Ürün demo amaçlıdır.<br/>AI Agent mimarisi kategori bağımsızdır.</div>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="view show" id="view-overview">
+        <div class="hrow">
+          <div>
+            <h1>Bugünün AI Özeti</h1>
+            <p class="muted">AI Agent, KPI’ları özetler, trend/anomali tespit eder ve aksiyon önerir.</p>
+          </div>
+          <div class="mini">
+            <div class="minilabel">Son güncelleme</div>
+            <div class="minival" id="lastUpdated">—</div>
+          </div>
+        </div>
+
+<div class="pfc">
+  <div class="pfc-card">
+    <div class="pfc-k">Sorun</div>
+    <div class="pfc-v">E‑ticarette karar alma, raporlama ve içerik üretimi dağınık. Ekipler veriyi okuyup aksiyona çevirmekte gecikiyor.</div>
+  </div>
+  <div class="pfc-card">
+    <div class="pfc-k">Fikir (AI Agent)</div>
+    <div class="pfc-v">Tek panelde, görev odaklı ajanlar: Satış Analisti, Raporlama, Sosyal Medya ve Öneri ajanı.</div>
+  </div>
+  <div class="pfc-card">
+    <div class="pfc-k">Çözüm</div>
+    <div class="pfc-v">AI Agent veriyi özetler, anomaliyi yakalar, aksiyon önerir. Demo’da motor yağı ürünleri sadece örnek veri.</div>
+  </div>
+</div>
+
+        <div class="kpi-grid" id="kpiGrid"></div>
+
+        <div class="grid2">
+          <div class="card big">
+            <div class="cardtop">
+              <div>
+                <div class="ctitle">AI Günlük Özet</div>
+                <div class="csub" id="aiModeLine">—</div>
+              </div>
+              <button class="btn ghost" id="btnRefresh">Yenile</button>
+            </div>
+            <div class="summary" id="aiSummary">—</div>
+            <div class="chips" id="topCats"></div>
+          </div>
+
+          <div class="card">
+            <div class="ctitle">Aksiyonlar</div>
+            <div class="csub">Öncelik etiketi ile öneriler</div>
+            <div class="actions" id="actionList"></div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card">
+            <div class="ctitle">Satış Trendi</div>
+            <div class="csub">Ciro (€/gün)</div>
+            <div id="chartRevenue" class="chart"></div>
+          </div>
+          <div class="card">
+            <div class="ctitle">Trafik</div>
+            <div class="csub">Oturumlar (günlük)</div>
+            <div id="chartTraffic" class="chart"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="view" id="view-sales">
+        <div class="hrow">
+          <div>
+            <h1>Sales Analyst Agent</h1>
+            <p class="muted">Ne oldu? Neden olabilir? Ne yapalım? Agent formatında özet.</p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card">
+            <div class="ctitle">Kategori performansı</div>
+            <div class="csub">Gelir / sipariş / iade</div>
+            <div class="table" id="tblCategories"></div>
+          </div>
+          <div class="card">
+            <div class="ctitle">Agent Yorumu</div>
+            <div class="csub">Yönetici dili, kısa</div>
+            <div class="agentbox" id="agentSalesText">—</div>
+            <div class="sep"></div>
+            <div class="ctitle">Segment içgörüsü</div>
+            <div class="csub">Kitle bazlı özet (demo)</div>
+            <div class="table" id="tblSegments"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="view" id="view-reporting">
+        <div class="hrow">
+          <div>
+            <h1>Reporting Agent</h1>
+            <p class="muted">KPI tablosu + yönetici özeti + dışa aktarma (demo).</p>
+          </div>
+          <div class="btnrow">
+            <button class="btn">PDF Oluştur (demo)</button>
+            <button class="btn">CSV İndir (demo)</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ctitle">KPI Raporu</div>
+          <div class="csub">Seçili aralık için özet</div>
+          <div class="reportgrid" id="reportGrid"></div>
+        </div>
+
+        <div class="card">
+          <div class="ctitle">AI Rapor Özeti</div>
+          <div class="csub">Kısa karar desteği</div>
+          <div class="agentbox" id="agentReportText">—</div>
+        </div>
+      </div>
+
+      <div class="view" id="view-social">
+        <div class="hrow">
+          <div>
+            <h1>Social Media Agent</h1>
+            <p class="muted">Hedef kitle varsayımı + 7 günlük plan + örnek metinler.</p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card">
+            <div class="ctitle">Hedef Kitle (Demo)</div>
+            <div class="csub">Gerçekte platform insight API’lerinden gelir</div>
+            <div class="form">
+              <label>Persona
+                <select id="persona">
+                  <option value="fp">25–34 Fiyat/Performans</option>
+                  <option value="premium">35–44 Premium</option>
+                  <option value="trend">18–24 Trend</option>
+                  <option value="b2b">B2B</option>
+                </select>
+              </label>
+              <label>Platform
+                <select id="platform">
+                  <option>Instagram</option>
+                  <option>TikTok</option>
+                  <option>YouTube</option>
+                </select>
+              </label>
+              <button class="btn primary" id="btnGenPlan">Plan Üret</button>
+            </div>
+            <div class="sep"></div>
+            <div class="ctitle">En iyi saat (demo)</div>
+            <div class="chips" id="bestTimes"></div>
+          </div>
+
+          <div class="card">
+            <div class="ctitle">7 Günlük İçerik Planı</div>
+            <div class="csub">Format + konu + CTA</div>
+            <div class="plan" id="planList"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ctitle">Örnek Post Metni</div>
+          <div class="csub">Agent üretimi (demo)</div>
+          <div class="agentbox" id="socialCopy">—</div>
+        </div>
+      </div>
+
+      <div class="view" id="view-reco">
+        <div class="hrow">
+          <div>
+            <h1>Recommendation Agent</h1>
+            <p class="muted">Kategori bağımsız öneri mantığı. Demo: motor yağı.</p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card">
+            <div class="ctitle">Kullanıcı Segmenti (Demo)</div>
+            <div class="csub">Öneriler bu segmente göre uyarlanır</div>
+            <div class="form">
+              <label>Segment
+                <select id="recoSegment">
+                  <option>25-34 F/P</option>
+                  <option>35-44 Premium</option>
+                  <option>18-24 Trend</option>
+                  <option>B2B</option>
+                </select>
+              </label>
+              <label>Hedef
+                <select id="recoGoal">
+                  <option>Cross-sell</option>
+                  <option>Upsell</option>
+                  <option>Yeni kullanıcı onboarding</option>
+                </select>
+              </label>
+              <button class="btn primary" id="btnReco">Öneri Üret</button>
+            </div>
+            <div class="sep"></div>
+            <div class="ctitle">Neden önerildi?</div>
+            <div class="agentbox" id="recoWhy">—</div>
+          </div>
+
+          <div class="card">
+            <div class="ctitle">Önerilen Ürünler (Demo)</div>
+            <div class="csub">3 kart + gerekçe</div>
+            <div class="reco-grid" id="recoCards"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="view" id="view-sources">
+        <div class="hrow">
+          <div>
+            <h1>Data Sources</h1>
+            <p class="muted">Sistem içi ve sistem dışı veri kaynakları (demo).</p>
+          </div>
+          <button class="btn ghost" id="btnLoadSources">Kaynakları Göster</button>
+        </div>
+
+        <div class="grid2">
+          <div class="card">
+            <div class="ctitle">Sistem içi</div>
+            <div class="csub">DB / export</div>
+            <div class="list" id="srcInternal"></div>
+          </div>
+          <div class="card">
+            <div class="ctitle">Sistem dışı</div>
+            <div class="csub">Trend / sosyal / rakip (mock)</div>
+            <div class="list" id="srcExternal"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ctitle">Not</div>
+          <div class="agentbox" id="srcNote">—</div>
+        </div>
+      </div>
+
+      <div class="view" id="view-store">
+        <div class="hrow">
+          <div>
+            <h1>Demo Store</h1>
+            <p class="muted">Motor yağı sadece demo kategoridir. AI Agent yapısı kategori bağımsızdır.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ctitle">Ürünler</div>
+          <div class="csub">Sade görünüm</div>
+          <div class="store-grid" id="storeGrid"></div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+<button class="demo-fab" id="demoFab" title="Demo Flow">▶ Demo Flow</button>
+
+<div class="demo-overlay" id="demoOverlay" aria-hidden="true">
+  <div class="demo-modal">
+    <div class="demo-top">
+      <div>
+        <div class="demo-title">Demo Akışı (5 adım)</div>
+        <div class="demo-sub">Sunumda sırasıyla gez. Her adım otomatik ilgili ekrana götürür.</div>
+      </div>
+      <button class="btn ghost" id="demoClose">Kapat</button>
+    </div>
+
+    <div class="demo-steps" id="demoSteps"></div>
+
+    <div class="demo-actions">
+      <button class="btn" id="demoPrev">Geri</button>
+      <button class="btn primary" id="demoNext">Devam</button>
+    </div>
+  </div>
+</div>
+
+  <script src="app.js"></script>
+</body>
+</html>
