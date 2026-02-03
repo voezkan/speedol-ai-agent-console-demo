@@ -505,3 +505,39 @@ init().catch(err => {
   $("pillAI").textContent = "AI: hata";
   $("aiSummary").textContent = "Sunucu çalışmıyor. Terminalde 'npm start' ile başlat.";
 });
+
+
+// === Data Sources Page (Demo Integrated) ===
+function renderDataSourcesPage(container) {
+  container.innerHTML = `
+    <div class="ds-page">
+      <h1>Data Sources</h1>
+      <div class="ds-grid">
+        <div class="ds-card">
+          <h3>Sistem içi (Demo)</h3>
+          <ul>
+            <li>Son 30 gün: <b>78 sipariş</b></li>
+            <li>Toplam ciro: <b>2.535,90 €</b></li>
+            <li>Ortalama sepet: <b>32,50 €</b></li>
+            <li>Sepet terk: <b>%45</b></li>
+            <li>Dönüşüm: <b>%2,86</b></li>
+          </ul>
+          <small>Status: Active (Simulated)</small>
+        </div>
+        <div class="ds-card">
+          <h3>Sistem dışı (Mock)</h3>
+          <ul>
+            <li>Motor Yağı trendi: <b>↑ artış</b></li>
+            <li>Sosyal etkileşim: <b>%34 daha fazla</b></li>
+            <li>Reklam sinyali: <b>Filtre düşük ROI</b></li>
+            <li>Rakip fiyat indirimi algılandı</li>
+          </ul>
+          <small>Status: External Signals (Mock)</small>
+        </div>
+      </div>
+      <p class="ds-note">
+        Bu veriler demo amaçlı simüle edilmiştir. Gerçek sistemde API ve veri tabanı entegrasyonu mümkündür.
+      </p>
+    </div>
+  `;
+}
