@@ -376,9 +376,3 @@ select{padding:10px 12px; border-radius:14px; border:1px solid rgba(255,255,255,
     width: auto;
   }
 }
-
-
-
-.ds-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.ds-card{background:rgba(255,255,255,.06);padding:16px;border-radius:14px}
-.ds-note{margin-top:16px;opacity:.8}
