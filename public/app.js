@@ -432,7 +432,7 @@ function renderStore() {
   });
 }
 
-async async function loadInsights() {
+async function loadInsights() {
   $("aiSummary").textContent = "Yükleniyor…";
   const data = await api(`/api/insights?range=${encodeURIComponent(RANGE)}`);
   INSIGHTS = data;
@@ -455,7 +455,7 @@ async async function loadInsights() {
   renderReporting();
 }
 
-async async async function loadSources() {
+async function loadSources() {
   let s = null;
   try {
     s = await api("/api/datasets");
