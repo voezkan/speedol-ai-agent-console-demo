@@ -196,11 +196,20 @@ app.get("/api/vehicles", (req, res) => res.json(VEHICLES));
 
 app.get("/api/datasets", (req, res) => {
   res.json({
-    internal: ["orders.json", "traffic.json", "products.json", "vehicles.json"],
-    external: ["social.json", "trends (mock)", "competitor prices (mock)"],
-    note: "Bu demo projede veriler JSON ile simüle edilmiştir. Gerçek projede API/DB bağlantısı yapılır.",
-  });
+  internal: [
+    "orders.json — Sipariş geçmişi (tarih, ürün, adet, ciro, kanal) • Demo KPI: 30g sipariş 78, ciro 2.535,90€, AOV 32,50€",
+    "traffic.json — Trafik & oturum (kaynak, cihaz, sayfa) • Demo KPI: 2.730 oturum, dönüşüm %2,86, sepet terk %45,03",
+    "products.json — Ürün kataloğu (kategori, fiyat, stok, marj) • Demo: En iyi kategori Motor Yağı, düşük performans Filtre, kritik stok Antifriz",
+    "vehicles.json — Uyumluluk verisi (araç ↔ ürün) • Demo: yanlış ürün riskini düşürür"
+  ],
+  external: [
+    "social.json — Sosyal etkileşim & içerik performansı (mock) • Demo: Instagram +%34 etkileşim",
+    "trends (mock) — Trend sinyali (talep artış/düşüş) • Demo: Motor Yağı ↑, Filtre ↓",
+    "competitor prices (mock) — Rakip fiyat/kampanya sinyali • Demo: Rakip X indirim algılandı"
+  ],
+  note: "Bu ekranda gösterilen veriler demo amaçlı simüle edilmiştir. Gerçek sistemde Shopify/WooCommerce, GA4, Meta/Google Ads ve üçüncü parti API’lerden canlı alınır.",
 });
+
 
 app.get("/api/insights", async (req, res) => {
   const range = (req.query.range || "7d").toString();

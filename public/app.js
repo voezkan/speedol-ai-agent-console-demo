@@ -481,6 +481,22 @@ async function loadSources() {
     };
   }
 
+// If backend returns only filenames, enrich them for mentor-friendly demo output
+const enrich = (arr, kind) => {
+  const map = {
+    "orders.json": "orders.json — Sipariş geçmişi (tarih, ürün, adet, ciro, kanal) • Demo KPI: 30g sipariş 78, ciro 2.535,90€, AOV 32,50€",
+    "traffic.json": "traffic.json — Trafik & oturum (kaynak, cihaz, sayfa) • Demo KPI: 2.730 oturum, dönüşüm %2,86, sepet terk %45,03",
+    "products.json": "products.json — Ürün kataloğu (kategori, fiyat, stok, marj) • Demo: En iyi kategori Motor Yağı, düşük performans Filtre, kritik stok Antifriz",
+    "vehicles.json": "vehicles.json — Uyumluluk verisi (araç ↔ ürün) • Demo: yanlış ürün riskini düşürür",
+    "social.json": "social.json — Sosyal etkileşim & içerik performansı (mock) • Demo: Instagram +%34 etkileşim",
+    "trends (mock)": "trends (mock) — Trend sinyali (talep artış/düşüş) • Demo: Motor Yağı ↑, Filtre ↓",
+    "competitor prices (mock)": "competitor prices (mock) — Rakip fiyat/kampanya sinyali • Demo: Rakip X indirim algılandı",
+  };
+  return (arr || []).map(x => map[x] || x);
+};
+
+s.internal = enrich(s.internal, "internal");
+s.external = enrich(s.external, "external");
   const a = $("srcInternal");
   const b = $("srcExternal");
   a.innerHTML = "";
