@@ -502,29 +502,17 @@ async function loadSources() {
   $("srcNote").textContent = s.note || "";
 }
 
-
-function renderSourcesPlaceholder(){
-  // When sources are hidden, keep the screen informative (no empty state).
-  const internal = [
-    { text: "Hazır: Sipariş/ürün/trafik verisi (demo). Gerçekte Shopify/WooCommerce + GA4/ERP'den gelir.", agents: ["Reporting","Sales"] }
-  ];
-  const external = [
-    { text: "Hazır: Trend/sosyal/rakip sinyalleri (mock). Gerçekte Meta/Google Ads + Social API + partner feed.", agents: ["Social","Sales"] }
-  ];
-  renderSourceItems($("srcInternal"), internal);
-  renderSourceItems($("srcExternal"), external);
-  $("srcNote").textContent = "Not: Demo'da veriler simüle edilir. Butona basınca detaylı kaynak listesi ve KPI örnekleri açılır.";
-}
-
 function toggleSources() {
   // Toggle visibility for mentor-friendly demo
   const btn = $("btnLoadSources");
   const visible = btn.dataset.visible === "1";
   if (visible) {
-    // hide (but keep a helpful empty-state for presentation)
+    // hide
+    $("srcInternal").innerHTML = "";
+    $("srcExternal").innerHTML = "";
+    $("srcNote").textContent = "—";
     btn.dataset.visible = "0";
     btn.textContent = "Kaynakları Göster";
-    renderSourcesPlaceholder();
     return;
   }
   btn.dataset.visible = "1";
@@ -571,7 +559,6 @@ async function init() {
   $("btnRefresh").addEventListener("click", loadInsights);
   $("btnLoadSources").dataset.visible = "0";
   $("btnLoadSources").addEventListener("click", toggleSources);
-  renderSourcesPlaceholder();
   $("btnGenPlan").addEventListener("click", () => renderSocial($("persona").value, $("platform").value));
   $("btnReco").addEventListener("click", renderReco);
 
