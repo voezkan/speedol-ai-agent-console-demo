@@ -482,35 +482,96 @@ async function loadSources() {
   }
 
 // If backend returns only filenames, enrich them for mentor-friendly demo output
-const enrich = (arr, kind) => {
-  const map = {
-    "orders.json": "orders.json — Sipariş geçmişi (tarih, ürün, adet, ciro, kanal) • Demo KPI: 30g sipariş 78, ciro 2.535,90€, AOV 32,50€",
-    "traffic.json": "traffic.json — Trafik & oturum (kaynak, cihaz, sayfa) • Demo KPI: 2.730 oturum, dönüşüm %2,86, sepet terk %45,03",
-    "products.json": "products.json — Ürün kataloğu (kategori, fiyat, stok, marj) • Demo: En iyi kategori Motor Yağı, düşük performans Filtre, kritik stok Antifriz",
-    "vehicles.json": "vehicles.json — Uyumluluk verisi (araç ↔ ürün) • Demo: yanlış ürün riskini düşürür",
-    "social.json": "social.json — Sosyal etkileşim & içerik performansı (mock) • Demo: Instagram +%34 etkileşim",
-    "trends (mock)": "trends (mock) — Trend sinyali (talep artış/düşüş) • Demo: Motor Yağı ↑, Filtre ↓",
-    "competitor prices (mock)": "competitor prices (mock) — Rakip fiyat/kampanya sinyali • Demo: Rakip X indirim algılandı",
+  const enrich = (arr) => {
+    const map = {
+      "orders.json": { text: "orders.json — Sipariş geçmişi (tarih, ürün, adet, ciro, kanal) • Demo KPI: 30g sipariş 78, ciro 2.535,90€, AOV 32,50€", agents: ["Sales", "Reporting", "Recommendation"] },
+      "traffic.json": { text: "traffic.json — Trafik & oturum (kaynak, cihaz, sayfa) • Demo KPI: 2.730 oturum, dönüşüm %2,86, sepet terk %45,03", agents: ["Reporting", "Social"] },
+      "products.json": { text: "products.json — Ürün kataloğu (kategori, fiyat, stok, marj) • Demo: En iyi kategori Motor Yağı, düşük performans Filtre, kritik stok Antifriz", agents: ["Sales", "Recommendation"] },
+      "vehicles.json": { text: "vehicles.json — Uyumluluk verisi (araç ↔ ürün) • Demo: yanlış ürün riskini düşürür", agents: ["Recommendation"] },
+      "social.json": { text: "social.json — Sosyal etkileşim & içerik performansı (mock) • Demo: Instagram +%34 etkileşim", agents: ["Social"] },
+      "trends (mock)": { text: "trends (mock) — Trend sinyali (talep artış/düşüş) • Demo: Motor Yağı ↑, Filtre ↓", agents: ["Sales", "Social"] },
+      "competitor prices (mock)": { text: "competitor prices (mock) — Rakip fiyat/kampanya sinyali • Demo: Rakip X indirim algılandı", agents: ["Sales", "Reporting"] },
+    };
+    return (arr || []).map(x => map[x] ? map[x] : { text: x, agents: [] });
   };
-  return (arr || []).map(x => map[x] || x);
-};
 
-s.internal = enrich(s.internal, "internal");
-s.external = enrich(s.external, "external");
   const a = $("srcInternal");
   const b = $("srcExternal");
-  a.innerHTML = "";
-  b.innerHTML = "";
-  (s.internal || []).forEach(x => { const div = document.createElement("div"); div.className = "li"; div.textContent = x; a.appendChild(div); });
-  (s.external || []).forEach(x => { const div = document.createElement("div"); div.className = "li"; div.textContent = x; b.appendChild(div); });
+  renderSourceItems(a, enrich(s.internal));
+  renderSourceItems(b, enrich(s.external));
   $("srcNote").textContent = s.note || "";
 }
+
+
+function renderSourcesPlaceholder(){
+  // When sources are hidden, keep the screen informative (no empty state).
+  const internal = [
+    { text: "Hazır: Sipariş/ürün/trafik verisi (demo). Gerçekte Shopify/WooCommerce + GA4/ERP'den gelir.", agents: ["Reporting","Sales"] }
+  ];
+  const external = [
+    { text: "Hazır: Trend/sosyal/rakip sinyalleri (mock). Gerçekte Meta/Google Ads + Social API + partner feed.", agents: ["Social","Sales"] }
+  ];
+  renderSourceItems($("srcInternal"), internal);
+  renderSourceItems($("srcExternal"), external);
+  $("srcNote").textContent = "Not: Demo'da veriler simüle edilir. Butona basınca detaylı kaynak listesi ve KPI örnekleri açılır.";
+}
+
+function toggleSources() {
+  // Toggle visibility for mentor-friendly demo
+  const btn = $("btnLoadSources");
+  const visible = btn.dataset.visible === "1";
+  if (visible) {
+    // hide (but keep a helpful empty-state for presentation)
+    btn.dataset.visible = "0";
+    btn.textContent = "Kaynakları Göster";
+    renderSourcesPlaceholder();
+    return;
+  }
+  btn.dataset.visible = "1";
+  btn.textContent = "Kaynakları Gizle";
+  // load & show
+  loadSources();
+}
+
+function renderSourceItems(targetEl, items) {
+  targetEl.innerHTML = "";
+  (items || []).forEach(item => {
+    const div = document.createElement("div");
+    div.className = "li";
+    if (typeof item === "string") {
+      div.textContent = item;
+    } else {
+      // item: { text, agents: [] }
+      const row = document.createElement("div");
+      row.className = "lirow";
+      const t = document.createElement("div");
+      t.className = "litext";
+      t.textContent = item.text || "";
+      const badges = document.createElement("div");
+      badges.className = "badges";
+      (item.agents || []).forEach(a => {
+        const b = document.createElement("span");
+        b.className = "badge";
+        b.textContent = a;
+        badges.appendChild(b);
+      });
+      row.appendChild(t);
+      row.appendChild(badges);
+      div.appendChild(row);
+    }
+    targetEl.appendChild(div);
+  });
+}
+
+
 
 async function init() {
   document.querySelectorAll(".navitem").forEach(btn => btn.addEventListener("click", () => setView(btn.dataset.view)));
   document.querySelectorAll(".segbtn").forEach(btn => btn.addEventListener("click", async () => { RANGE = btn.dataset.range; setRangeButtons(RANGE); await loadInsights(); }));
   $("btnRefresh").addEventListener("click", loadInsights);
-  $("btnLoadSources").addEventListener("click", loadSources);
+  $("btnLoadSources").dataset.visible = "0";
+  $("btnLoadSources").addEventListener("click", toggleSources);
+  renderSourcesPlaceholder();
   $("btnGenPlan").addEventListener("click", () => renderSocial($("persona").value, $("platform").value));
   $("btnReco").addEventListener("click", renderReco);
 
