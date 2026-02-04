@@ -209,6 +209,7 @@ app.get("/api/datasets", (req, res) => {
   ],
   note: "Bu ekranda gösterilen veriler demo amaçlı simüle edilmiştir. Gerçek sistemde Shopify/WooCommerce, GA4, Meta/Google Ads ve üçüncü parti API’lerden canlı alınır.",
 });
+});
 
 
 app.get("/api/insights", async (req, res) => {
