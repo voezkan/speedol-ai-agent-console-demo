@@ -484,13 +484,13 @@ async function loadSources() {
 // If backend returns only filenames, enrich them for mentor-friendly demo output
   const enrich = (arr) => {
     const map = {
-      "orders.json": { text: "orders.json — Sipariş geçmişi (tarih, ürün, adet, ciro, kanal) • Demo KPI: 30g sipariş 78, ciro 2.535,90€, AOV 32,50€", agents: ["Sales", "Reporting", "Recommendation"] },
-      "traffic.json": { text: "traffic.json — Trafik & oturum (kaynak, cihaz, sayfa) • Demo KPI: 2.730 oturum, dönüşüm %2,86, sepet terk %45,03", agents: ["Reporting", "Social"] },
-      "products.json": { text: "products.json — Ürün kataloğu (kategori, fiyat, stok, marj) • Demo: En iyi kategori Motor Yağı, düşük performans Filtre, kritik stok Antifriz", agents: ["Sales", "Recommendation"] },
-      "vehicles.json": { text: "vehicles.json — Uyumluluk verisi (araç ↔ ürün) • Demo: yanlış ürün riskini düşürür", agents: ["Recommendation"] },
-      "social.json": { text: "social.json — Sosyal etkileşim & içerik performansı (mock) • Demo: Instagram +%34 etkileşim", agents: ["Social"] },
-      "trends (mock)": { text: "trends (mock) — Trend sinyali (talep artış/düşüş) • Demo: Motor Yağı ↑, Filtre ↓", agents: ["Sales", "Social"] },
-      "competitor prices (mock)": { text: "competitor prices (mock) — Rakip fiyat/kampanya sinyali • Demo: Rakip X indirim algılandı", agents: ["Sales", "Reporting"] },
+      "orders.json": { text: "Sipariş Geçmişi (tarih, ürün, adet, ciro, kanal) • Demo KPI: 30g sipariş 78, ciro 2.535,90€, AOV 32,50€", agents: ["Sales", "Reporting", "Recommendation"] },
+      "traffic.json": { text: "Trafik ve Oturum (kaynak, cihaz, sayfa) • Demo KPI: 2.730 oturum, dönüşüm %2,86, sepet terk %45,03", agents: ["Reporting", "Social"] },
+      "products.json": { text: "Ürün Kataloğu (kategori, fiyat, stok, marj) • Demo: En iyi kategori Motor Yağı, düşük performans Filtre, kritik stok Antifriz", agents: ["Sales", "Recommendation"] },
+      "vehicles.json": { text: "Uyumluluk Verisi (araç ↔ ürün) • Demo: yanlış ürün riskini düşürür", agents: ["Recommendation"] },
+      "social.json": { text: "Sosyal Performans (mock) • Demo: Instagram +%34 etkileşim", agents: ["Social"] },
+      "trends (mock)": { text: "Trend Sinyali (mock) (talep artış/düşüş) • Demo: Motor Yağı ↑, Filtre ↓", agents: ["Sales", "Social"] },
+      "competitor prices (mock)": { text: "Rakip Fiyat Sinyali (mock) • Demo: Rakip X indirim algılandı", agents: ["Sales", "Reporting"] },
     };
     return (arr || []).map(x => map[x] ? map[x] : { text: x, agents: [] });
   };
@@ -502,17 +502,29 @@ async function loadSources() {
   $("srcNote").textContent = s.note || "";
 }
 
+
+function renderSourcesPlaceholder(){
+  // When sources are hidden, keep the screen informative (no empty state).
+  const internal = [
+    { text: "Hazır: Sipariş/ürün/trafik verisi (demo). Gerçekte Shopify/WooCommerce + GA4/ERP'den gelir.", agents: ["Reporting","Sales"] }
+  ];
+  const external = [
+    { text: "Hazır: Trend/sosyal/rakip sinyalleri (mock). Gerçekte Meta/Google Ads + Social API + partner feed.", agents: ["Social","Sales"] }
+  ];
+  renderSourceItems($("srcInternal"), internal);
+  renderSourceItems($("srcExternal"), external);
+  $("srcNote").textContent = "Not: Demo'da veriler simüle edilir. Butona basınca detaylı kaynak listesi ve KPI örnekleri açılır.";
+}
+
 function toggleSources() {
   // Toggle visibility for mentor-friendly demo
   const btn = $("btnLoadSources");
   const visible = btn.dataset.visible === "1";
   if (visible) {
-    // hide
-    $("srcInternal").innerHTML = "";
-    $("srcExternal").innerHTML = "";
-    $("srcNote").textContent = "—";
+    // hide (but keep a helpful empty-state for presentation)
     btn.dataset.visible = "0";
     btn.textContent = "Kaynakları Göster";
+    renderSourcesPlaceholder();
     return;
   }
   btn.dataset.visible = "1";
@@ -559,6 +571,7 @@ async function init() {
   $("btnRefresh").addEventListener("click", loadInsights);
   $("btnLoadSources").dataset.visible = "0";
   $("btnLoadSources").addEventListener("click", toggleSources);
+  renderSourcesPlaceholder();
   $("btnGenPlan").addEventListener("click", () => renderSocial($("persona").value, $("platform").value));
   $("btnReco").addEventListener("click", renderReco);
 
