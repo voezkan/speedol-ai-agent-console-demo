@@ -484,13 +484,13 @@ async function loadSources() {
 // If backend returns only filenames, enrich them for mentor-friendly demo output
   const enrich = (arr) => {
     const map = {
-      "orders.json": { text: "Sipariş Geçmişi (tarih, ürün, adet, ciro, kanal) • Demo KPI: 30g sipariş 78, ciro 2.535,90€, AOV 32,50€", agents: ["Sales", "Reporting", "Recommendation"] },
-      "traffic.json": { text: "Trafik ve Oturum (kaynak, cihaz, sayfa) • Demo KPI: 2.730 oturum, dönüşüm %2,86, sepet terk %45,03", agents: ["Reporting", "Social"] },
-      "products.json": { text: "Ürün Kataloğu (kategori, fiyat, stok, marj) • Demo: En iyi kategori Motor Yağı, düşük performans Filtre, kritik stok Antifriz", agents: ["Sales", "Recommendation"] },
-      "vehicles.json": { text: "Uyumluluk Verisi (araç ↔ ürün) • Demo: yanlış ürün riskini düşürür", agents: ["Recommendation"] },
-      "social.json": { text: "Sosyal Performans (mock) • Demo: Instagram +%34 etkileşim", agents: ["Social"] },
-      "trends (mock)": { text: "Trend Sinyali (mock) (talep artış/düşüş) • Demo: Motor Yağı ↑, Filtre ↓", agents: ["Sales", "Social"] },
-      "competitor prices (mock)": { text: "Rakip Fiyat Sinyali (mock) • Demo: Rakip X indirim algılandı", agents: ["Sales", "Reporting"] },
+      "orders.json": { text: "orders.json — Sipariş geçmişi (tarih, ürün, adet, ciro, kanal) • Demo KPI: 30g sipariş 78, ciro 2.535,90€, AOV 32,50€", agents: ["Sales", "Reporting", "Recommendation"] },
+      "traffic.json": { text: "traffic.json — Trafik & oturum (kaynak, cihaz, sayfa) • Demo KPI: 2.730 oturum, dönüşüm %2,86, sepet terk %45,03", agents: ["Reporting", "Social"] },
+      "products.json": { text: "products.json — Ürün kataloğu (kategori, fiyat, stok, marj) • Demo: En iyi kategori Motor Yağı, düşük performans Filtre, kritik stok Antifriz", agents: ["Sales", "Recommendation"] },
+      "vehicles.json": { text: "vehicles.json — Uyumluluk verisi (araç ↔ ürün) • Demo: yanlış ürün riskini düşürür", agents: ["Recommendation"] },
+      "social.json": { text: "social.json — Sosyal etkileşim & içerik performansı (mock) • Demo: Instagram +%34 etkileşim", agents: ["Social"] },
+      "trends (mock)": { text: "trends (mock) — Trend sinyali (talep artış/düşüş) • Demo: Motor Yağı ↑, Filtre ↓", agents: ["Sales", "Social"] },
+      "competitor prices (mock)": { text: "competitor prices (mock) — Rakip fiyat/kampanya sinyali • Demo: Rakip X indirim algılandı", agents: ["Sales", "Reporting"] },
     };
     return (arr || []).map(x => map[x] ? map[x] : { text: x, agents: [] });
   };
@@ -533,20 +533,33 @@ function toggleSources() {
   loadSources();
 }
 
+
+function sanitizeSourceText(s){
+  if(!s) return "";
+  // Remove technical file names like 'orders.json — ' or 'traffic.csv - '
+  let out = String(s).trim();
+  out = out.replace(/^[\w.-]+\.(json|csv)\s*[—\-:]\s*/i, "");
+  // If file name appears anywhere, remove it
+  out = out.replace(/[\w.-]+\.(json|csv)\s*/ig, "");
+  // Clean leftover double spaces
+  out = out.replace(/\s{2,}/g, " ").trim();
+  return out;
+}
+
 function renderSourceItems(targetEl, items) {
   targetEl.innerHTML = "";
   (items || []).forEach(item => {
     const div = document.createElement("div");
     div.className = "li";
     if (typeof item === "string") {
-      div.textContent = item;
+      div.textContent = sanitizeSourceText(item);
     } else {
       // item: { text, agents: [] }
       const row = document.createElement("div");
       row.className = "lirow";
       const t = document.createElement("div");
       t.className = "litext";
-      t.textContent = item.text || "";
+      t.textContent = sanitizeSourceText(item.text || "");
       const badges = document.createElement("div");
       badges.className = "badges";
       (item.agents || []).forEach(a => {
